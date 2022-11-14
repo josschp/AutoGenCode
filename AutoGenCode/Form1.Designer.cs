@@ -100,6 +100,7 @@
             this.btnGenCode.TabIndex = 2;
             this.btnGenCode.Text = "Gen Code";
             this.btnGenCode.UseVisualStyleBackColor = true;
+            this.btnGenCode.Click += new System.EventHandler(this.btnGenCode_Click);
             // 
             // groupBox7
             // 
@@ -118,6 +119,7 @@
             this.cmbTables.Name = "cmbTables";
             this.cmbTables.Size = new System.Drawing.Size(145, 23);
             this.cmbTables.TabIndex = 0;
+            this.cmbTables.SelectedIndexChanged += new System.EventHandler(this.cmbTables_SelectedIndexChanged);
             // 
             // groupBox6
             // 
@@ -136,6 +138,7 @@
             this.cmbSchemas.Name = "cmbSchemas";
             this.cmbSchemas.Size = new System.Drawing.Size(101, 23);
             this.cmbSchemas.TabIndex = 0;
+            this.cmbSchemas.SelectedIndexChanged += new System.EventHandler(this.cmbSchemas_SelectedIndexChanged);
             // 
             // groupBox5
             // 
@@ -212,6 +215,7 @@
             this.btnConnect.TabIndex = 1;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // txtIPAdd
             // 
