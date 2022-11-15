@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
+using System.Xml.Serialization;
 
 namespace AutoGenCode
 {
@@ -33,6 +34,33 @@ namespace AutoGenCode
             mconn.Close();
             return dtTable;
         }
+
+        internal DataTable GetTableName(string text)
+        {
+            if (mconn.State == ConnectionState.Closed)
+                mconn.Open();
+            DataTable dtTable = new DataTable();
+            string sql = $"SELECT table_name FROM information_schema.tables WHERE table_type = 'base table' AND table_schema='{text}';";
+            var comm = new MySqlCommand(sql, mconn);
+            MySqlDataAdapter ad = new MySqlDataAdapter(comm);
+            ad.Fill(dtTable);
+            mconn.Close();
+            return dtTable;
+        }
+
+        internal DataTable GetField(string dbname, string tbname)
+        {
+            if (mconn.State == ConnectionState.Closed)
+                mconn.Open();
+            DataTable dtTable = new DataTable();
+            string sql = $"SELECT ordinal_position, Column_name, data_type, Is_nullable, column_default, character_maximum_length FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '{dbname}' AND TABLE_NAME = '{tbname}';";
+            var comm = new MySqlCommand(sql, mconn);
+            MySqlDataAdapter ad = new MySqlDataAdapter(comm);
+            ad.Fill(dtTable);
+            mconn.Close();
+            return dtTable;
+        }
+
         ~Connection() { }
     }
 }
